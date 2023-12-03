@@ -6,7 +6,7 @@ const moneyInput = document.querySelector('#moneyInput');
 const balanceEl = document.querySelector('#balanceEl');
 const listTable = document.querySelector('#list');
 
-const bankAcount = {
+const bankAccount = {
   balance: 0,
   limit: 1000,
   hesabat: [],
@@ -27,15 +27,14 @@ const bankAcount = {
     };
 
     this.hesabat.push(history);
-   
+
     return this.balance;
   },
 
   xercle: function (m) {
     const checkValid = () => {
-      if (this.balance <= 0) {
-        console.log('invalid balance');
-        return;
+      if (this.balance - moneyInput.value < 0) {
+        return alert('Falsche Entscheidung!');
       }
 
       this.balance -= m;
@@ -56,20 +55,14 @@ const bankAcount = {
 
   show: function (m) {
     const thisObj = this;
-    
-    
 
     function handleMonitor() {
       console.log(thisObj.balance);
       console.log(thisObj.hesabat);
-      
     }
-    
 
     handleMonitor();
-    
- 
-   
+
     return this.balance;
   },
 };
@@ -77,35 +70,47 @@ const bankAcount = {
 incrementBtn.addEventListener('click', function () {
   const value = moneyInput.value;
 
-  bankAcount.artir(+value);
+  bankAccount.artir(+value);
 
   moneyInput.value = '';
 });
 
 decrementBtn.addEventListener('click', function () {
   const value = moneyInput.value;
-  bankAcount.xercle(+value);
+  bankAccount.xercle(+value);
   moneyInput.value = '';
+});
+moneyInput.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    const value = moneyInput.value;
+    bankAccount.artir(+value); 
+    moneyInput.value = '';
+  }
 });
 
 showBtn.addEventListener('click', function () {
-  const result = bankAcount.show();
-
-  //  ? balanceEl.innerHTML = bankAcount.balance;
+  const result = bankAccount.show();
+  
   balanceEl.innerHTML = result;
 
-  const newContent = bankAcount.hesabat
+  const newContent = bankAccount.hesabat
     .map(
       (item, index) => `
-  <tr>
-  <th scope="row">${index + 1}</th>
-  <td>${item.type}</td>
-  <td class="text-${item.type == 'Cash' ? 'success' : 'danger'}">${
-        item.type == 'Cash' ? '+' + item.amount : '-' + item.amount
-      }</td>
-  <td>12.11.2023</td>
-</tr>
-  `
+        <tr>
+          <th scope="row">${index + 1}</th>
+          <td>${item.type}</td>
+          <td class="text-${item.type == 'Cash' ? 'success' : 'danger'}">${
+            item.type == 'Cash' ? '+' + item.amount : '-' + item.amount
+          }</td>
+          <td>${new Date(item.created).toLocaleString('de-DE', {
+            hour: 'numeric',
+            minute: 'numeric',
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+          })}</td>
+        </tr>
+      `
     )
     .join('');
 

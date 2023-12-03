@@ -2,44 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./styles.css"
+    />
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-primary-subtle">
-    <div
-      class="d-flex justify-content-between align-items-center  p-5"
-    >
-      <img class="w-50 " 
-        src="https://1000logos.net/wp-content/uploads/2017/09/Color-Deutsche-Bank-Logo.jpg"
+  <body class="text-bg-danger">
+    <div class="d-flex justify-content-between align-items-center p-5">
+      <img
+        class="w-50 logo"
+        src="https://banner2.cleanpng.com/20180824/qxq/kisspng-savings-bank-logo-font-sparkasse-holstein-references-hyperhook-5b80275cd06940.0518729215351253408537.jpg"
+        alt="Logo"
       />
 
-      <h1 class="text-primary">Balance: <span id="balanceEl">0</span></h1>
+      <h1 class="text-break">Dein Konto: <span id="balanceEl">0</span></h1>
     </div>
-   
-
 
     <main class="container p-5">
       <input
         id="moneyInput"
         class="form-control form-control-lg"
         type="number"
-        placeholder="Your money"
+        placeholder="Hier schreiben...."
       />
       <div class="mt-5 d-flex justify-content-center">
-        <div class="btn-group mx-auto" role="group" aria-label="Basic example">
-          <button type="button" id="incrementBtn" class="btn btn-success btn-lg">
-            Artir
+        <div
+          class="btn-group mx-auto"
+          role="group"
+          aria-label="Basic example"
+        >
+          <button
+            type="button"
+            id="incrementBtn"
+            class="btn btn-outline-dark btn-lg"
+          >
+            Konto erhöhen
           </button>
-          <button type="button" id="decrementBtn" class="btn btn-danger btn-lg">
-            Xercle
+          <button
+            type="button"
+            id="decrementBtn"
+            class="btn btn-outline-dark btn-lg"
+          >
+            Ausgeben
           </button>
-          <button type="button" id="showBtn" class="btn btn-secondary btn-lg">
-            Goster
+          <button
+            type="button"
+            id="showBtn"
+            class="btn btn-outline-dark btn-lg"
+          >
+            Zeigen
           </button>
         </div>
       </div>
@@ -47,10 +68,30 @@
       <table class="table table-striped border my-5">
         <thead>
           <tr>
-            <th class="text-success" scope="col">#</th>
-            <th class="text-danger" scope="col">Type</th>
-            <th class="text-primary" scope="col">Amount</th>
-            <th class="text-secondary" scope="col">Time</th>
+            <th
+              class="text-success"
+              scope="col"
+            >
+              #
+            </th>
+            <th
+              class="text-danger"
+              scope="col"
+            >
+              Typ
+            </th>
+            <th
+              class="text-primary"
+              scope="col"
+            >
+              Menge
+            </th>
+            <th
+              class="text-secondary"
+              scope="col"
+            >
+              Zeit
+            </th>
           </tr>
         </thead>
         <tbody id="list">
